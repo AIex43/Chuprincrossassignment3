@@ -1,25 +1,15 @@
 import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-import ProductCard from '../../components/ProductCard';
-import { products } from '../../components/products.js';
+import ProductCard from '../../screens/HomeScreen';
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <FlatList
-        data={products}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-        renderItem={({ item }) => (
-          <ProductCard
-            title={item.title}
-            price={item.price}
-            imageUrl={item.imageUrl}
-          />
-        )}
-        contentContainerStyle={styles.list}
-        showsVerticalScrollIndicator={false}
+      <ProductCard
+        title="Cappuccino"
+        price="$4.99"
+        imageUrl="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
       />
     </View>
   );
@@ -29,8 +19,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fffbf5',
-  },
-  list: {
-    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
