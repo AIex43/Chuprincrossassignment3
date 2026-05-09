@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const CategorySelector = () => {
+const CustomButton = ({ onCategoryChange }) => {
   const [selected, setSelected] = useState('Усі');
+
   const categories = ['Усі', 'Кава', 'Чай', 'Інше'];
+
+  const handlePress = (cat) => {
+    setSelected(cat);
+
+    if (onCategoryChange) {
+      onCategoryChange(cat);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -13,7 +22,7 @@ const CategorySelector = () => {
         return (
           <TouchableOpacity
             key={cat}
-            onPress={() => setSelected(cat)}
+            onPress={() => handlePress(cat)}
             activeOpacity={0.8}
             style={styles.buttonBase}
           >
@@ -80,4 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategorySelector;
+export default CustomButton;

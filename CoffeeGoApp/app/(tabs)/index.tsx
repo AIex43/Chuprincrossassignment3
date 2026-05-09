@@ -1,16 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import ProductCard from '../../screens/HomeScreen';
+// SCREENS
+import HomeScreen from '../../screens/HomeScreen';
+import CartScreen from '../../screens/CartScreen';
+import OrdersScreen from '../../screens/TestScreen';
+import ProfileScreen from '../../screens/ProductScreen';
 
-export default function HomeScreen() {
+// COMPONENT
+import CustomTabBar from '../../components/Header';
+
+export default function Index() {
+  const [selectedTab, setSelectedTab] = useState('Меню');
+
+  const renderScreen = () => {
+    switch (selectedTab) {
+      case 'Меню':
+        return <HomeScreen />;
+
+      case 'Кошик':
+        return <CartScreen />;
+
+      case 'Замовлення':
+        return <ProfileScreen />;
+
+      case 'Профіль':
+        return <OrdersScreen />;
+
+      default:
+        return <HomeScreen />;
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <ProductCard
-        title="Cappuccino"
-        price="$4.99"
-        imageUrl="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+
+      {/* SCREEN AREA */}
+      <View style={styles.screenContainer}>
+        {renderScreen()}
+      </View>
+
+      {/* TAB BAR (ALWAYS VISIBLE) */}
+      <CustomTabBar
+        selected={selectedTab}
+        setSelected={setSelectedTab}
       />
+
     </View>
   );
 }
@@ -19,7 +54,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fffbf5',
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+
+  screenContainer: {
+    flex: 1,
   },
 });

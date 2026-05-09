@@ -1,48 +1,79 @@
-import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, ScrollView } from 'react-native';
 
-// COMPONENTS
+
 import Head from '../components/Head';
 import SearchBar from '../components/SearchBar';
 import CustomButton from '../components/CustomButton';
 import ProductCard from '../components/ProductCard';
-import Header from '../components/Header';
+
+
+import { products } from '../components/products';
 
 export default function HomeScreen() {
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.content}>
+  const [selectedCategory, setSelectedCategory] = useState('Усі');
 
-        {/* 1. HEAD */}
+  const filteredProducts =
+    selectedCategory === 'Усі'
+      ? products
+      : products.filter(
+          (item) => item.category === selectedCategory
+        );
+
+  return (
+    <View style={styles.container}>
+
+      
+      <View style={styles.top}>
         <Head />
 
-        {/* 2. SEARCH BAR */}
         <SearchBar />
 
-        {/* 3. CUSTOM BUTTON */}
-        <CustomButton />
-
-        {/* 4. PRODUCT CARD */}
-        <ProductCard />
-
-        {/* 5. HEADER */}
-        <Header />
-
+        <CustomButton
+          onCategoryChange={setSelectedCategory}
+        />
       </View>
-    </ScrollView>
+
+     
+      <ScrollView
+        style={styles.scrollArea}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {filteredProducts.map((item) => (
+          <ProductCard
+            key={item.id}
+            title={item.title}
+            price={item.price}
+            imageUrl={item.imageUrl}
+            onAdd={() => console.log('Added:', item.title)}
+          />
+        ))}
+      </ScrollView>
+
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fffbf5',
+    backgroundColor: '#FFF0E4',
   },
 
-  content: {
+  top: {
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 20,
-    gap: 20,
+    paddingTop: 20,
+    gap: 15,
+  },
+
+  scrollArea: {
+    flex: 1,
+    marginTop: 10,
+  },
+
+  scrollContent: {
+    alignItems: 'center',
+    paddingBottom: 20,
   },
 });

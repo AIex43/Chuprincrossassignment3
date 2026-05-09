@@ -1,53 +1,283 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const CustomTabBar = () => {
+const CustomTabBar = ({ selected, setSelected }) => {
+  const brandColor = '#4F2F00';
+  const lightColor = '#fffbf5';
+
   return (
     <View style={styles.navBar}>
-      {/* MENU / HOME */}
-      <TouchableOpacity style={styles.tabItem}>
-        <View style={styles.iconContainer}>
-          <View style={styles.homeRoof} />
-          <View style={styles.homeBody}>
-            <View style={styles.homeDoor} />
+
+      
+      <TouchableOpacity
+        style={styles.tabItem}
+        activeOpacity={0.8}
+        onPress={() => setSelected('Меню')}
+      >
+        <View
+          style={[
+            styles.activeArea,
+            {
+              backgroundColor:
+                selected === 'Меню' ? brandColor : 'transparent',
+            },
+          ]}
+        >
+
+          <View style={styles.iconContainer}>
+
+            <View
+              style={[
+                styles.homeRoof,
+                {
+                  borderColor:
+                    selected === 'Меню' ? lightColor : brandColor,
+                },
+              ]}
+            />
+
+            <View
+              style={[
+                styles.homeBody,
+                {
+                  borderColor:
+                    selected === 'Меню' ? lightColor : brandColor,
+                  backgroundColor:
+                    selected === 'Меню' ? brandColor : lightColor,
+                },
+              ]}
+            >
+              <View
+                style={[
+                  styles.homeDoor,
+                  {
+                    borderColor:
+                      selected === 'Меню' ? lightColor : brandColor,
+                  },
+                ]}
+              />
+            </View>
           </View>
+
+          <Text
+            style={[
+              styles.label,
+              {
+                color:
+                  selected === 'Меню' ? lightColor : brandColor,
+              },
+            ]}
+          >
+            Меню
+          </Text>
         </View>
-        <Text style={styles.label}>Меню</Text>
       </TouchableOpacity>
 
-      {/* CART */}
-      <TouchableOpacity style={styles.tabItem}>
-        <View style={styles.iconContainer}>
-          <View style={styles.cartHandle} />
-          <View style={styles.cartBasket} />
-          <View style={styles.cartWheels}>
-            <View style={styles.dot} />
-            <View style={styles.dot} />
+      
+      <TouchableOpacity
+        style={styles.tabItem}
+        activeOpacity={0.8}
+        onPress={() => setSelected('Кошик')}
+      >
+        <View
+          style={[
+            styles.activeArea,
+            {
+              backgroundColor:
+                selected === 'Кошик' ? brandColor : 'transparent',
+            },
+          ]}
+        >
+
+          <View style={styles.iconContainer}>
+
+            <View
+              style={[
+                styles.cartHandle,
+                {
+                  borderColor:
+                    selected === 'Кошик' ? lightColor : brandColor,
+                },
+              ]}
+            />
+
+            <View
+              style={[
+                styles.cartBasket,
+                {
+                  borderColor:
+                    selected === 'Кошик' ? lightColor : brandColor,
+                },
+              ]}
+            />
+
+            <View style={styles.cartWheels}>
+              <View
+                style={[
+                  styles.dot,
+                  {
+                    backgroundColor:
+                      selected === 'Кошик' ? lightColor : brandColor,
+                  },
+                ]}
+              />
+              <View
+                style={[
+                  styles.dot,
+                  {
+                    backgroundColor:
+                      selected === 'Кошик' ? lightColor : brandColor,
+                  },
+                ]}
+              />
+            </View>
+
           </View>
+
+          <Text
+            style={[
+              styles.label,
+              {
+                color:
+                  selected === 'Кошик' ? lightColor : brandColor,
+              },
+            ]}
+          >
+            Кошик
+          </Text>
         </View>
-        <Text style={styles.label}>Кошик</Text>
       </TouchableOpacity>
 
-      {/* ORDERS */}
-      <TouchableOpacity style={styles.tabItem}>
-        <View style={styles.iconContainer}>
-          <View style={styles.docFrame}>
-            <View style={styles.docFold} />
-            <View style={styles.docLineLong} />
-            <View style={styles.docLineShort} />
+      
+      <TouchableOpacity
+        style={styles.tabItem}
+        activeOpacity={0.8}
+        onPress={() => setSelected('Замовлення')}
+      >
+        <View
+          style={[
+            styles.activeArea,
+            {
+              backgroundColor:
+                selected === 'Замовлення' ? brandColor : 'transparent',
+            },
+          ]}
+        >
+
+          <View style={styles.iconContainer}>
+
+            <View
+              style={[
+                styles.docFrame,
+                {
+                  borderColor:
+                    selected === 'Замовлення' ? lightColor : brandColor,
+                },
+              ]}
+            >
+              <View
+                style={[
+                  styles.docFold,
+                  {
+                    borderColor:
+                      selected === 'Замовлення' ? lightColor : brandColor,
+                    backgroundColor:
+                      selected === 'Замовлення' ? brandColor : lightColor,
+                  },
+                ]}
+              />
+
+              <View
+                style={[
+                  styles.docLineLong,
+                  {
+                    backgroundColor:
+                      selected === 'Замовлення' ? lightColor : brandColor,
+                  },
+                ]}
+              />
+
+              <View
+                style={[
+                  styles.docLineShort,
+                  {
+                    backgroundColor:
+                      selected === 'Замовлення' ? lightColor : brandColor,
+                  },
+                ]}
+              />
+            </View>
+
           </View>
+
+          <Text
+            style={[
+              styles.label,
+              {
+                color:
+                  selected === 'Замовлення' ? lightColor : brandColor,
+              },
+            ]}
+          >
+            Замовлення
+          </Text>
         </View>
-        <Text style={styles.label}>Замовлення</Text>
       </TouchableOpacity>
 
-      {/* PROFILE */}
-      <TouchableOpacity style={styles.tabItem}>
-        <View style={styles.iconContainer}>
-          <View style={styles.profileHead} />
-          <View style={styles.profileShoulders} />
+      
+      <TouchableOpacity
+        style={styles.tabItem}
+        activeOpacity={0.8}
+        onPress={() => setSelected('Профіль')}
+      >
+        <View
+          style={[
+            styles.activeArea,
+            {
+              backgroundColor:
+                selected === 'Профіль' ? brandColor : 'transparent',
+            },
+          ]}
+        >
+
+          <View style={styles.iconContainer}>
+
+            <View
+              style={[
+                styles.profileHead,
+                {
+                  borderColor:
+                    selected === 'Профіль' ? lightColor : brandColor,
+                },
+              ]}
+            />
+
+            <View
+              style={[
+                styles.profileShoulders,
+                {
+                  borderColor:
+                    selected === 'Профіль' ? lightColor : brandColor,
+                },
+              ]}
+            />
+
+          </View>
+
+          <Text
+            style={[
+              styles.label,
+              {
+                color:
+                  selected === 'Профіль' ? lightColor : brandColor,
+              },
+            ]}
+          >
+            Профіль
+          </Text>
         </View>
-        <Text style={styles.label}>Профіль</Text>
       </TouchableOpacity>
+
     </View>
   );
 };
@@ -67,9 +297,16 @@ const styles = StyleSheet.create({
   },
 
   tabItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
     flex: 1,
+    alignItems: 'center',
+  },
+
+  activeArea: {
+    width: 80,
+    height: 80,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   iconContainer: {
@@ -81,18 +318,16 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    color: '#4F2F00',
     fontSize: 14,
     fontWeight: '500',
   },
 
-  // HOME
+  
   homeRoof: {
     width: 28,
     height: 28,
     borderLeftWidth: 3,
     borderTopWidth: 3,
-    borderColor: '#4F2F00',
     borderRadius: 4,
     transform: [{ rotate: '45deg' }],
     position: 'absolute',
@@ -104,10 +339,8 @@ const styles = StyleSheet.create({
     height: 20,
     borderWidth: 3,
     borderTopWidth: 0,
-    borderColor: '#4F2F00',
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
-    backgroundColor: '#fffbf5',
     position: 'absolute',
     bottom: 4,
     alignItems: 'center',
@@ -118,20 +351,18 @@ const styles = StyleSheet.create({
     height: 8,
     borderWidth: 3,
     borderBottomWidth: 0,
-    borderColor: '#4F2F00',
     borderTopLeftRadius: 6,
     borderTopRightRadius: 6,
     position: 'absolute',
     bottom: 0,
   },
 
-  // CART
+  
   cartHandle: {
     width: 10,
     height: 5,
     borderLeftWidth: 3,
     borderTopWidth: 3,
-    borderColor: '#4F2F00',
     borderTopLeftRadius: 3,
     position: 'absolute',
     top: 8,
@@ -142,7 +373,6 @@ const styles = StyleSheet.create({
     width: 28,
     height: 18,
     borderWidth: 3,
-    borderColor: '#4F2F00',
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     top: 2,
@@ -160,15 +390,13 @@ const styles = StyleSheet.create({
     width: 5,
     height: 5,
     borderRadius: 3,
-    backgroundColor: '#4F2F00',
   },
 
-  // DOCUMENT
+  
   docFrame: {
     width: 26,
     height: 32,
     borderWidth: 3,
-    borderColor: '#4F2F00',
     borderRadius: 6,
     justifyContent: 'center',
     alignItems: 'center',
@@ -182,15 +410,12 @@ const styles = StyleSheet.create({
     height: 10,
     borderBottomWidth: 3,
     borderLeftWidth: 3,
-    borderColor: '#4F2F00',
-    backgroundColor: '#fffbf5',
     borderBottomLeftRadius: 4,
   },
 
   docLineLong: {
     width: 12,
     height: 3,
-    backgroundColor: '#4F2F00',
     borderRadius: 2,
     marginVertical: 2,
   },
@@ -198,17 +423,15 @@ const styles = StyleSheet.create({
   docLineShort: {
     width: 8,
     height: 3,
-    backgroundColor: '#4F2F00',
     borderRadius: 2,
   },
 
-  // PROFILE
+
   profileHead: {
     width: 14,
     height: 14,
     borderRadius: 7,
     borderWidth: 3,
-    borderColor: '#4F2F00',
     marginBottom: 4,
   },
 
@@ -217,7 +440,6 @@ const styles = StyleSheet.create({
     height: 16,
     borderWidth: 3,
     borderBottomWidth: 0,
-    borderColor: '#4F2F00',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
   },

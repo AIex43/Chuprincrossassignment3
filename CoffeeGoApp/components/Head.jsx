@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <View style={styles.headerContainer}>
       
-      {/* BURGER MENU ICON */}
+      
       <TouchableOpacity style={styles.iconButton}>
         <View style={styles.burgerContainer}>
           <View style={[styles.burgerLine, { backgroundColor: brandColor }]} />
@@ -17,7 +17,7 @@ const Header = () => {
         </View>
       </TouchableOpacity>
 
-      {/* LOGO TEXT */}
+      
       <View style={styles.logoContainer}>
         <Text style={[styles.logoText, { color: brandColor }]}>
           <Text style={styles.boldText}>Coffe</Text>
@@ -25,7 +25,7 @@ const Header = () => {
         </Text>
       </View>
 
-      {/* CART ICON */}
+     
       <TouchableOpacity style={styles.iconButton}>
         <View style={styles.cartIconContainer}>
           <View style={[styles.cartHandle, { borderColor: brandColor }]} />
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     width: 375,
     height: 80,
-    backgroundColor: '#fffbf5',
+    backgroundColor: '#FFF0E4',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
