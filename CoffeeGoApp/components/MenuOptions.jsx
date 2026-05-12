@@ -72,19 +72,19 @@ const styles = StyleSheet.create({
   separator: { height: 1, backgroundColor: '#E0E0E0', opacity: 0.5 },
   chevron: { width: 10, height: 10, borderRightWidth: 2, borderTopWidth: 2, transform: [{ rotate: '45deg' }] },
   
-  // ICON STYLES
+  
   iconBase: { width: 30, height: 30, justifyContent: 'center', alignItems: 'center' },
-  // Profile Icon
+  
   head: { width: 10, height: 10, borderRadius: 5, borderWidth: 2, marginBottom: 2 },
   body: { width: 18, height: 8, borderTopLeftRadius: 8, borderTopRightRadius: 8, borderWidth: 2, borderBottomWidth: 0 },
-  // Card Icon
+ 
   cardBase: { borderWidth: 2, borderRadius: 4, height: 20 },
   cardLine: { width: '100%', height: 3, position: 'absolute', top: 3 },
   cardChip: { width: 4, height: 3, position: 'absolute', bottom: 3, left: 3 },
-  // Clock Icon
+  
   clockBase: { width: 22, height: 22, borderRadius: 11, borderWidth: 2 },
   clockHand: { width: 2, position: 'absolute', left: 9 },
-  // Bell Icon
+  
   bellTop: { width: 16, height: 14, borderTopLeftRadius: 8, borderTopRightRadius: 8, borderWidth: 2, borderBottomWidth: 2 },
   bellClapper: { width: 4, height: 3, borderBottomLeftRadius: 2, borderBottomRightRadius: 2, marginTop: -1 }
 });
