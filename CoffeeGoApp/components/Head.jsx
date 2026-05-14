@@ -1,23 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const Header = () => {
-  // Updated brown color
   const brandColor = '#4F2F00';
 
   return (
     <View style={styles.headerContainer}>
       
-      
-      <TouchableOpacity style={styles.iconButton}>
-        <View style={styles.burgerContainer}>
-          <View style={[styles.burgerLine, { backgroundColor: brandColor }]} />
-          <View style={[styles.burgerLine, { backgroundColor: brandColor }]} />
-          <View style={[styles.burgerLine, { backgroundColor: brandColor }]} />
-        </View>
-      </TouchableOpacity>
 
-      
+
+      {/* LOGO */}
       <View style={styles.logoContainer}>
         <Text style={[styles.logoText, { color: brandColor }]}>
           <Text style={styles.boldText}>Coffe</Text>
@@ -25,21 +17,13 @@ const Header = () => {
         </Text>
       </View>
 
-     
-      <TouchableOpacity style={styles.iconButton}>
-        <View style={styles.cartIconContainer}>
-          <View style={[styles.cartHandle, { borderColor: brandColor }]} />
-          <View style={[styles.cartBasket, { borderColor: brandColor }]} />
-          <View style={styles.cartWheels}>
-            <View style={[styles.dot, { backgroundColor: brandColor }]} />
-            <View style={[styles.dot, { backgroundColor: brandColor }]} />
-          </View>
-        </View>
-      </TouchableOpacity>
+  
 
     </View>
   );
 };
+
+export default Header;
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -78,7 +62,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
 
-  // --- BURGER ICON ---
   burgerContainer: {
     width: 28,
     height: 16,
@@ -91,7 +74,6 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
 
-  // --- CART ICON ---
   cartIconContainer: {
     width: 35,
     height: 30,
@@ -133,5 +115,3 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
 });
-
-export default Header;

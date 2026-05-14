@@ -2,22 +2,22 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const ProfileSection = () => {
-  // Matching your brand palette
+  
   const brandColor = '#4F2F00';
 
 
   return (
     <View style={styles.profileContainer}>
-      {/* SECTION TITLE */}
+      
       <Text style={[styles.sectionTitle, { color: brandColor }]}>Профіль</Text>
 
-      {/* CUSTOM AVATAR ICON */}
+     
       <View style={styles.avatarWrapper}>
         <View style={[styles.headCircle, { borderColor: brandColor }]} />
         <View style={[styles.bodyArch, { borderColor: brandColor }]} />
       </View>
 
-      {/* USER INFO */}
+      
       <View style={styles.infoContainer}>
         <Text style={[styles.userName, { color: brandColor }]}>Іван Петренко</Text>
         <Text style={styles.userEmail}>ivan@example.com</Text>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   profileContainer: {
     alignItems: 'center',
     paddingVertical: 30,
-    backgroundColor: '#FFF0E4', // Matching your header background
+    backgroundColor: '#FFF0E4', 
   },
   sectionTitle: {
     fontSize: 24,

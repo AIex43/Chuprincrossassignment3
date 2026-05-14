@@ -8,7 +8,7 @@ const CustomTabBar = ({ selected, setSelected }) => {
   return (
     <View style={styles.navBar}>
 
-      
+      {/* MENU */}
       <TouchableOpacity
         style={styles.tabItem}
         activeOpacity={0.8}
@@ -23,9 +23,7 @@ const CustomTabBar = ({ selected, setSelected }) => {
             },
           ]}
         >
-
           <View style={styles.iconContainer}>
-
             <View
               style={[
                 styles.homeRoof,
@@ -73,7 +71,7 @@ const CustomTabBar = ({ selected, setSelected }) => {
         </View>
       </TouchableOpacity>
 
-      
+      {/* CART */}
       <TouchableOpacity
         style={styles.tabItem}
         activeOpacity={0.8}
@@ -88,9 +86,7 @@ const CustomTabBar = ({ selected, setSelected }) => {
             },
           ]}
         >
-
           <View style={styles.iconContainer}>
-
             <View
               style={[
                 styles.cartHandle,
@@ -131,7 +127,6 @@ const CustomTabBar = ({ selected, setSelected }) => {
                 ]}
               />
             </View>
-
           </View>
 
           <Text
@@ -148,83 +143,7 @@ const CustomTabBar = ({ selected, setSelected }) => {
         </View>
       </TouchableOpacity>
 
-      
-      <TouchableOpacity
-        style={styles.tabItem}
-        activeOpacity={0.8}
-        onPress={() => setSelected('Замовлення')}
-      >
-        <View
-          style={[
-            styles.activeArea,
-            {
-              backgroundColor:
-                selected === 'Замовлення' ? brandColor : 'transparent',
-            },
-          ]}
-        >
-
-          <View style={styles.iconContainer}>
-
-            <View
-              style={[
-                styles.docFrame,
-                {
-                  borderColor:
-                    selected === 'Замовлення' ? lightColor : brandColor,
-                },
-              ]}
-            >
-              <View
-                style={[
-                  styles.docFold,
-                  {
-                    borderColor:
-                      selected === 'Замовлення' ? lightColor : brandColor,
-                    backgroundColor:
-                      selected === 'Замовлення' ? brandColor : lightColor,
-                  },
-                ]}
-              />
-
-              <View
-                style={[
-                  styles.docLineLong,
-                  {
-                    backgroundColor:
-                      selected === 'Замовлення' ? lightColor : brandColor,
-                  },
-                ]}
-              />
-
-              <View
-                style={[
-                  styles.docLineShort,
-                  {
-                    backgroundColor:
-                      selected === 'Замовлення' ? lightColor : brandColor,
-                  },
-                ]}
-              />
-            </View>
-
-          </View>
-
-          <Text
-            style={[
-              styles.label,
-              {
-                color:
-                  selected === 'Замовлення' ? lightColor : brandColor,
-              },
-            ]}
-          >
-            Замовлення
-          </Text>
-        </View>
-      </TouchableOpacity>
-
-      
+      {/* PROFILE */}
       <TouchableOpacity
         style={styles.tabItem}
         activeOpacity={0.8}
@@ -239,9 +158,7 @@ const CustomTabBar = ({ selected, setSelected }) => {
             },
           ]}
         >
-
           <View style={styles.iconContainer}>
-
             <View
               style={[
                 styles.profileHead,
@@ -261,7 +178,6 @@ const CustomTabBar = ({ selected, setSelected }) => {
                 },
               ]}
             />
-
           </View>
 
           <Text
@@ -284,21 +200,22 @@ const CustomTabBar = ({ selected, setSelected }) => {
 
 const styles = StyleSheet.create({
   navBar: {
-    width: 375,
+    width: '100%',
     height: 120,
     backgroundColor: '#fffbf5',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     borderTopWidth: 2,
     borderColor: '#4F2F00',
-    alignSelf: 'center',
     paddingBottom: 10,
+    paddingHorizontal: 10,
   },
 
   tabItem: {
-    flex: 1,
+    width: 90,
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
   activeArea: {
@@ -322,7 +239,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 
-  
+  /* HOME ICON */
   homeRoof: {
     width: 28,
     height: 28,
@@ -357,7 +274,7 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 
-  
+  /* CART ICON */
   cartHandle: {
     width: 10,
     height: 5,
@@ -392,41 +309,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
 
-  
-  docFrame: {
-    width: 26,
-    height: 32,
-    borderWidth: 3,
-    borderRadius: 6,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  docFold: {
-    position: 'absolute',
-    top: -2,
-    right: -2,
-    width: 10,
-    height: 10,
-    borderBottomWidth: 3,
-    borderLeftWidth: 3,
-    borderBottomLeftRadius: 4,
-  },
-
-  docLineLong: {
-    width: 12,
-    height: 3,
-    borderRadius: 2,
-    marginVertical: 2,
-  },
-
-  docLineShort: {
-    width: 8,
-    height: 3,
-    borderRadius: 2,
-  },
-
-
+  /* PROFILE ICON */
   profileHead: {
     width: 14,
     height: 14,

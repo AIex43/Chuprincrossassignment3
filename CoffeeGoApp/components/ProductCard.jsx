@@ -5,11 +5,28 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  Alert,
+  Platform,
 } from 'react-native';
 
 import { addToCart } from './cartStore';
 
 const ProductCard = ({ title, price, imageUrl }) => {
+
+  const handleAddToCart = () => {
+    addToCart({ title, price, imageUrl });
+
+    // WORKS ON BOTH WEB + MOBILE
+    if (Platform.OS === 'web') {
+      window.alert(`${title} додано до кошика`);
+    } else {
+      Alert.alert(
+        'Успішно',
+        `${title} додано до кошика`
+      );
+    }
+  };
+
   return (
     <View style={styles.card}>
 
@@ -22,7 +39,8 @@ const ProductCard = ({ title, price, imageUrl }) => {
 
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => addToCart({ title, price, imageUrl })}
+        activeOpacity={0.8}
+        onPress={handleAddToCart}
       >
         <View style={styles.plusH} />
         <View style={styles.plusV} />

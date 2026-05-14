@@ -5,7 +5,7 @@ import { View, StyleSheet } from 'react-native';
 import HomeScreen from '../../screens/HomeScreen';
 import CartScreen from '../../screens/CartScreen';
 import OrdersScreen from '../../screens/TestScreen';
-import ProfileScreen from '../../screens/ProductScreen';
+
 
 // COMPONENT
 import CustomTabBar from '../../components/Header';
@@ -21,8 +21,6 @@ export default function Index() {
       case 'Кошик':
         return <CartScreen />;
 
-      case 'Замовлення':
-        return <ProfileScreen />;
 
       case 'Профіль':
         return <OrdersScreen />;
