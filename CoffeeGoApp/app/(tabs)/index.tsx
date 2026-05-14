@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-// SCREENS
+
 import HomeScreen from '../../screens/HomeScreen';
 import CartScreen from '../../screens/CartScreen';
 import OrdersScreen from '../../screens/TestScreen';
 
 
-// COMPONENT
+
 import CustomTabBar from '../../components/Header';
 
 export default function Index() {
@@ -33,12 +33,12 @@ export default function Index() {
   return (
     <View style={styles.container}>
 
-      {/* SCREEN AREA */}
+      
       <View style={styles.screenContainer}>
         {renderScreen()}
       </View>
 
-      {/* TAB BAR (ALWAYS VISIBLE) */}
+      
       <CustomTabBar
         selected={selectedTab}
         setSelected={setSelectedTab}

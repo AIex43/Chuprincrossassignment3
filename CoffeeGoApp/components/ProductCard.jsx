@@ -16,7 +16,7 @@ const ProductCard = ({ title, price, imageUrl }) => {
   const handleAddToCart = () => {
     addToCart({ title, price, imageUrl });
 
-    // WORKS ON BOTH WEB + MOBILE
+
     if (Platform.OS === 'web') {
       window.alert(`${title} додано до кошика`);
     } else {

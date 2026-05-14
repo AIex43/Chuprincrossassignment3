@@ -8,7 +8,7 @@ const CustomTabBar = ({ selected, setSelected }) => {
   return (
     <View style={styles.navBar}>
 
-      {/* MENU */}
+      
       <TouchableOpacity
         style={styles.tabItem}
         activeOpacity={0.8}
@@ -143,7 +143,7 @@ const CustomTabBar = ({ selected, setSelected }) => {
         </View>
       </TouchableOpacity>
 
-      {/* PROFILE */}
+      
       <TouchableOpacity
         style={styles.tabItem}
         activeOpacity={0.8}
