@@ -1,18 +1,29 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-
 import HomeScreen from '../../screens/HomeScreen';
 import CartScreen from '../../screens/CartScreen';
-import OrdersScreen from '../../screens/TestScreen';
-
-
+import TestScreen from '../../screens/TestScreen';
+import ProductScreen from '../../screens/ProductScreen';
+import NotificationsScreen from '../../screens/NotificationsScreen';
 
 import CustomTabBar from '../../components/Header';
+import { ThemeProvider } from '../../components/themeContext';
 
 export default function Index() {
   const [selectedTab, setSelectedTab] = useState('Меню');
 
+  return (
+    <ThemeProvider>
+      <IndexContent
+        selectedTab={selectedTab}
+        setSelectedTab={setSelectedTab}
+      />
+    </ThemeProvider>
+  );
+}
+
+function IndexContent({ selectedTab, setSelectedTab }) {
   const renderScreen = () => {
     switch (selectedTab) {
       case 'Меню':
@@ -21,9 +32,14 @@ export default function Index() {
       case 'Кошик':
         return <CartScreen />;
 
-
       case 'Профіль':
-        return <OrdersScreen />;
+        return <TestScreen onNavigate={setSelectedTab} />;
+
+      case 'Історія':
+        return <ProductScreen />;
+
+      case 'Сповіщення':   
+        return <NotificationsScreen />;
 
       default:
         return <HomeScreen />;
@@ -32,29 +48,19 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-
-      
       <View style={styles.screenContainer}>
         {renderScreen()}
       </View>
 
-      
       <CustomTabBar
         selected={selectedTab}
         setSelected={setSelectedTab}
       />
-
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fffbf5',
-  },
-
-  screenContainer: {
-    flex: 1,
-  },
+  container: { flex: 1 },
+  screenContainer: { flex: 1 },
 });

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { ThemeContext } from './themeContext';
 
 const CustomButton = ({ onCategoryChange }) => {
   const [selected, setSelected] = useState('Усі');
+  const { theme } = useContext(ThemeContext);
 
   const categories = ['Усі', 'Кава', 'Чай', 'Інше'];
 
@@ -27,12 +29,31 @@ const CustomButton = ({ onCategoryChange }) => {
             style={styles.buttonBase}
           >
             {isActive ? (
-              <View style={styles.activeButton}>
-                <Text style={styles.activeText}>{cat}</Text>
+              <View
+                style={[
+                  styles.activeButton,
+                  { backgroundColor: theme.colors.primary },
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.activeText,
+                    { color: theme.colors.background },
+                  ]}
+                >
+                  {cat}
+                </Text>
               </View>
             ) : (
               <View style={styles.inactiveButton}>
-                <Text style={styles.inactiveText}>{cat}</Text>
+                <Text
+                  style={[
+                    styles.inactiveText,
+                    { color: theme.colors.primary },
+                  ]}
+                >
+                  {cat}
+                </Text>
               </View>
             )}
           </TouchableOpacity>
@@ -65,7 +86,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4F2F00',
   },
 
   inactiveButton: {
@@ -77,13 +97,11 @@ const styles = StyleSheet.create({
   },
 
   activeText: {
-    color: '#FFF0E4',
     fontSize: 18,
     fontWeight: '600',
   },
 
   inactiveText: {
-    color: '#4F2F00',
     fontSize: 18,
     fontWeight: '500',
   },

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useContext } from 'react';
 import {
   View,
   StyleSheet,
@@ -13,7 +13,11 @@ import CustomButton from '../components/CustomButton';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../components/products';
 
+import { ThemeContext } from '../components/themeContext';
+
 export default function HomeScreen() {
+  const { theme } = useContext(ThemeContext);
+
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('Усі');
   const [searchQuery, setSearchQuery] = useState('');
@@ -51,16 +55,28 @@ export default function HomeScreen() {
   }, [products, selectedCategory, searchQuery]);
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: theme.colors.background },
+      ]}
+    >
       <View style={styles.top}>
         <Head />
 
         <TextInput
-          style={styles.search}
+          style={[
+            styles.search,
+            {
+              backgroundColor: theme.darkMode ? '#3a3a3a' : '#FFFBF5',
+              color: theme.colors.text,
+              borderColor: theme.darkMode ? '#FFFBF5' : '#4F2F00',
+            },
+          ]}
           value={searchQuery}
           onChangeText={setSearchQuery}
           placeholder="Пошук..."
-          placeholderTextColor="#8A6B5A"
+          placeholderTextColor={theme.darkMode ? '#FFFBF5' : '#4F2F00'}
         />
 
         <CustomButton onCategoryChange={setSelectedCategory} />
@@ -72,7 +88,9 @@ export default function HomeScreen() {
         </View>
       ) : error ? (
         <View style={styles.center}>
-          <Text style={styles.errorText}>{error}</Text>
+          <Text style={{ color: 'red', fontSize: 16 }}>
+            {error}
+          </Text>
         </View>
       ) : (
         <ScrollView
@@ -98,38 +116,35 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF0E4',
   },
+
   top: {
     alignItems: 'center',
     paddingTop: 20,
     gap: 15,
   },
+
   search: {
     width: '88%',
     height: 48,
     borderRadius: 16,
-    backgroundColor: '#FFF',
     paddingHorizontal: 16,
-    color: '#3A2A22',
     borderWidth: 1,
-    borderColor: '#E7D2C4',
   },
+
   scrollArea: {
     flex: 1,
     marginTop: 10,
   },
+
   scrollContent: {
     alignItems: 'center',
     paddingBottom: 20,
   },
+
   center: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  errorText: {
-    color: '#B00020',
-    fontSize: 16,
   },
 });

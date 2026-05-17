@@ -2,15 +2,30 @@ import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { ThemeContext } from '../components/themeContext';
 
-const mockOrders = [
-  { id: 1, title: 'Cappuccino', price: 4.5, date: '2026-05-16' },
-  { id: 2, title: 'Latte', price: 5.0, date: '2026-05-15' },
-  { id: 3, title: 'Espresso', price: 3.0, date: '2026-05-14' },
+const mockNotifications = [
+  {
+    id: 1,
+    title: 'Ваше замовлення прийнято',
+    message: 'Ми почали готувати вашу каву ☕',
+    time: '10:30',
+  },
+  {
+    id: 2,
+    title: 'Замовлення готове',
+    message: 'Можете забрати замовлення',
+    time: '09:15',
+  },
+  {
+    id: 3,
+    title: 'Знижка 10%',
+    message: 'Тільки сьогодні на всі напої',
+    time: 'Вчора',
+  },
 ];
 
-const ProductScreen = () => {
+export default function NotificationsScreen() {
   const { theme } = useContext(ThemeContext);
-  const [orders] = useState(mockOrders);
+  const [notifications] = useState(mockNotifications);
 
   return (
     <View
@@ -19,26 +34,21 @@ const ProductScreen = () => {
         { backgroundColor: theme.colors.background },
       ]}
     >
-      <Text
-        style={[
-          styles.title,
-          { color: theme.colors.primary },
-        ]}
-      >
-        Історія замовлень
+      <Text style={[styles.title, { color: theme.colors.primary }]}>
+        Сповіщення
       </Text>
 
-      {orders.length === 0 ? (
-        <View style={styles.emptyBox}>
+      {notifications.length === 0 ? (
+        <View style={styles.empty}>
           <Text style={{ color: theme.colors.text }}>
-            У вас ще немає замовлень
+            Немає нових сповіщень
           </Text>
         </View>
       ) : (
         <ScrollView contentContainerStyle={styles.list}>
-          {orders.map((order) => (
+          {notifications.map((item) => (
             <View
-              key={order.id}
+              key={item.id}
               style={[
                 styles.card,
                 {
@@ -47,16 +57,16 @@ const ProductScreen = () => {
                 },
               ]}
             >
-              <Text style={[styles.name, { color: theme.colors.text }]}>
-                {order.title}
+              <Text style={[styles.cardTitle, { color: theme.colors.text }]}>
+                {item.title}
               </Text>
 
-              <Text style={{ color: theme.colors.primary }}>
-                ${order.price}
+              <Text style={[styles.message, { color: theme.colors.text }]}>
+                {item.message}
               </Text>
 
-              <Text style={[styles.date, { color: theme.colors.text }]}>
-                {order.date}
+              <Text style={[styles.time, { color: theme.colors.primary }]}>
+                {item.time}
               </Text>
             </View>
           ))}
@@ -64,9 +74,7 @@ const ProductScreen = () => {
       )}
     </View>
   );
-};
-
-export default ProductScreen;
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -94,18 +102,23 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
 
-  name: {
-    fontSize: 18,
+  cardTitle: {
+    fontSize: 16,
     fontWeight: '600',
   },
 
-  date: {
+  message: {
     marginTop: 5,
-    fontSize: 12,
-    opacity: 0.7,
+    fontSize: 14,
+    opacity: 0.9,
   },
 
-  emptyBox: {
+  time: {
+    marginTop: 8,
+    fontSize: 12,
+  },
+
+  empty: {
     marginTop: 40,
   },
 });

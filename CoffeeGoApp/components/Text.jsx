@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {
   View,
@@ -8,17 +8,41 @@ import {
 } from 'react-native';
 
 import { clearCart } from './cartStore';
+import { ThemeContext } from '../components/themeContext';
 
 const CartHeader = () => {
-  return (
-    <View style={styles.headerContainer}>
+  const { theme } = useContext(ThemeContext);
 
-      <Text style={styles.headerText}>
+  return (
+    <View
+      style={[
+        styles.headerContainer,
+        {
+          backgroundColor: theme.colors.background,
+        },
+      ]}
+    >
+
+      <Text
+        style={[
+          styles.headerText,
+          {
+            color: theme.colors.primary,
+          },
+        ]}
+      >
         Ваш кошик
       </Text>
 
       <TouchableOpacity onPress={clearCart}>
-        <Text style={styles.clearText}>
+        <Text
+          style={[
+            styles.clearText,
+            {
+              color: theme.colors.primary,
+            },
+          ]}
+        >
           Очистити
         </Text>
       </TouchableOpacity>
@@ -32,8 +56,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 80,
 
-    backgroundColor: '#FFF0E4',
-
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -42,13 +64,11 @@ const styles = StyleSheet.create({
   },
 
   headerText: {
-    color: '#4F2F00',
     fontSize: 24,
     fontWeight: '500',
   },
 
   clearText: {
-    color: '#4F2F00',
     fontSize: 14,
     fontWeight: '600',
   },

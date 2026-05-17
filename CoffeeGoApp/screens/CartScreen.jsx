@@ -1,14 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { View, ScrollView, StyleSheet, Alert } from 'react-native';
+import React, { useEffect, useState, useContext } from 'react';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Alert,
+} from 'react-native';
 
 import CartCard from '../components/CartCard';
 import CartHeader from '../components/Text';
 import OrderButton from '../components/OrderButton';
 
-import { getCart, subscribe, clearCart } from '../components/cartStore';
+import {
+  getCart,
+  subscribe,
+  clearCart,
+} from '../components/cartStore';
+
+import { ThemeContext } from '../components/themeContext';
 
 export default function CartScreen() {
   const [cartItems, setCartItems] = useState(getCart());
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     const unsub = subscribe((data) => {
@@ -29,13 +42,22 @@ export default function CartScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: theme.colors.background,
+        },
+      ]}
+    >
 
       <CartHeader />
 
-      <ScrollView contentContainerStyle={styles.list}>
+      <ScrollView
+        contentContainerStyle={styles.list}
+        showsVerticalScrollIndicator={false}
+      >
 
-        
         {cartItems.map((item, index) => (
           <CartCard
             key={index}
@@ -46,7 +68,6 @@ export default function CartScreen() {
           />
         ))}
 
-        
         <OrderButton onPress={handleOrder} />
 
       </ScrollView>
@@ -58,7 +79,6 @@ export default function CartScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF0E4',
   },
 
   list: {

@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { ThemeContext } from './themeContext';
 
 const Header = () => {
-  const brandColor = '#4F2F00';
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <View style={styles.headerContainer}>
-      
-
-
+    <View
+      style={[
+        styles.headerContainer,
+        { backgroundColor: theme.colors.background },
+      ]}
+    >
       {/* LOGO */}
       <View style={styles.logoContainer}>
-        <Text style={[styles.logoText, { color: brandColor }]}>
+        <Text
+          style={[
+            styles.logoText,
+            { color: theme.colors.primary },
+          ]}
+        >
           <Text style={styles.boldText}>Coffe</Text>
           <Text style={styles.normalText}>Go!</Text>
         </Text>
       </View>
-
-  
-
     </View>
   );
 };
@@ -29,19 +34,11 @@ const styles = StyleSheet.create({
   headerContainer: {
     width: 375,
     height: 80,
-    backgroundColor: '#FFF0E4',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 15,
     alignSelf: 'center',
-  },
-
-  iconButton: {
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 
   logoContainer: {
@@ -60,58 +57,5 @@ const styles = StyleSheet.create({
 
   normalText: {
     fontWeight: '400',
-  },
-
-  burgerContainer: {
-    width: 28,
-    height: 16,
-    justifyContent: 'space-between',
-  },
-
-  burgerLine: {
-    width: '100%',
-    height: 3,
-    borderRadius: 2,
-  },
-
-  cartIconContainer: {
-    width: 35,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  cartHandle: {
-    width: 8,
-    height: 4,
-    borderLeftWidth: 2,
-    borderTopWidth: 2,
-    borderTopLeftRadius: 2,
-    position: 'absolute',
-    top: 2,
-    left: 4,
-  },
-
-  cartBasket: {
-    width: 24,
-    height: 14,
-    borderWidth: 2,
-    borderBottomLeftRadius: 4,
-    borderBottomRightRadius: 4,
-    marginTop: 2,
-  },
-
-  cartWheels: {
-    flexDirection: 'row',
-    width: 18,
-    justifyContent: 'space-between',
-    marginTop: 2,
-    marginLeft: 4,
-  },
-
-  dot: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
   },
 });

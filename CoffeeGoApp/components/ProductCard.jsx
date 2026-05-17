@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   Text,
@@ -10,42 +10,64 @@ import {
 } from 'react-native';
 
 import { addToCart } from './cartStore';
+import { ThemeContext } from './themeContext';
 
 const ProductCard = ({ title, price, imageUrl }) => {
+  const { theme } = useContext(ThemeContext);
 
   const handleAddToCart = () => {
     addToCart({ title, price, imageUrl });
 
-
     if (Platform.OS === 'web') {
       window.alert(`${title} додано до кошика`);
     } else {
-      Alert.alert(
-        'Успішно',
-        `${title} додано до кошика`
-      );
+      Alert.alert('Успішно', `${title} додано до кошика`);
     }
   };
 
   return (
-    <View style={styles.card}>
-
+    <View
+      style={[
+        styles.card,
+        {
+          backgroundColor: theme.colors.card,
+          borderColor: theme.colors.primary,
+        },
+      ]}
+    >
       <Image source={{ uri: imageUrl }} style={styles.image} />
 
       <View style={styles.text}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.price}>${price}</Text>
+        <Text style={[styles.title, { color: theme.colors.text }]}>
+          {title}
+        </Text>
+
+        <Text style={[styles.price, { color: theme.colors.primary }]}>
+          ${price}
+        </Text>
       </View>
 
       <TouchableOpacity
-        style={styles.btn}
+        style={[
+          styles.btn,
+          { borderColor: theme.colors.primary },
+        ]}
         activeOpacity={0.8}
         onPress={handleAddToCart}
       >
-        <View style={styles.plusH} />
-        <View style={styles.plusV} />
+        <View
+          style={[
+            styles.plusH,
+            { backgroundColor: theme.colors.primary },
+          ]}
+        />
+        <View
+          style={[
+            styles.plusV,
+            { backgroundColor: theme.colors.primary },
+          ]}
+        />
       </TouchableOpacity>
-
     </View>
   );
 };
@@ -56,9 +78,7 @@ const styles = StyleSheet.create({
     height: 128,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fffbf5',
     borderWidth: 2,
-    borderColor: '#4F2F00',
     borderRadius: 12,
     padding: 12,
     marginVertical: 8,
@@ -79,13 +99,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#4F2F00',
   },
 
   price: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#4F2F00',
     marginTop: 6,
   },
 
@@ -93,7 +111,6 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderWidth: 2,
-    borderColor: '#4F2F00',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -103,14 +120,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 18,
     height: 2,
-    backgroundColor: '#4F2F00',
   },
 
   plusV: {
     position: 'absolute',
     width: 2,
     height: 18,
-    backgroundColor: '#4F2F00',
   },
 });
 

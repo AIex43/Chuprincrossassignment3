@@ -1,14 +1,44 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useContext } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
+
+import { ThemeContext } from './themeContext';
 
 const CustomTabBar = ({ selected, setSelected }) => {
-  const brandColor = '#4F2F00';
-  const lightColor = '#fffbf5';
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  // ✅ THEME COLORS
+  const primaryColor = theme.colors.primary;
+  const backgroundColor = theme.colors.background;
+  const textColor = theme.colors.text;
 
   return (
-    <View style={styles.navBar}>
+    <View
+      style={[
+        styles.navBar,
+        {
+          backgroundColor: backgroundColor,
+          borderColor: primaryColor,
+        },
+      ]}
+    >
 
-      
+      {/* THEME BUTTON */}
+      <TouchableOpacity
+        style={styles.themeButton}
+        activeOpacity={0.8}
+        onPress={toggleTheme}
+      >
+        <Text style={styles.themeIcon}>
+          {theme.darkMode ? '🌙' : '☀️'}
+        </Text>
+      </TouchableOpacity>
+
+      {/* MENU */}
       <TouchableOpacity
         style={styles.tabItem}
         activeOpacity={0.8}
@@ -19,17 +49,22 @@ const CustomTabBar = ({ selected, setSelected }) => {
             styles.activeArea,
             {
               backgroundColor:
-                selected === 'Меню' ? brandColor : 'transparent',
+                selected === 'Меню'
+                  ? primaryColor
+                  : 'transparent',
             },
           ]}
         >
           <View style={styles.iconContainer}>
+
             <View
               style={[
                 styles.homeRoof,
                 {
                   borderColor:
-                    selected === 'Меню' ? lightColor : brandColor,
+                    selected === 'Меню'
+                      ? backgroundColor
+                      : primaryColor,
                 },
               ]}
             />
@@ -39,9 +74,14 @@ const CustomTabBar = ({ selected, setSelected }) => {
                 styles.homeBody,
                 {
                   borderColor:
-                    selected === 'Меню' ? lightColor : brandColor,
+                    selected === 'Меню'
+                      ? backgroundColor
+                      : primaryColor,
+
                   backgroundColor:
-                    selected === 'Меню' ? brandColor : lightColor,
+                    selected === 'Меню'
+                      ? primaryColor
+                      : backgroundColor,
                 },
               ]}
             >
@@ -50,11 +90,14 @@ const CustomTabBar = ({ selected, setSelected }) => {
                   styles.homeDoor,
                   {
                     borderColor:
-                      selected === 'Меню' ? lightColor : brandColor,
+                      selected === 'Меню'
+                        ? backgroundColor
+                        : primaryColor,
                   },
                 ]}
               />
             </View>
+
           </View>
 
           <Text
@@ -62,7 +105,9 @@ const CustomTabBar = ({ selected, setSelected }) => {
               styles.label,
               {
                 color:
-                  selected === 'Меню' ? lightColor : brandColor,
+                  selected === 'Меню'
+                    ? backgroundColor
+                    : textColor,
               },
             ]}
           >
@@ -82,17 +127,22 @@ const CustomTabBar = ({ selected, setSelected }) => {
             styles.activeArea,
             {
               backgroundColor:
-                selected === 'Кошик' ? brandColor : 'transparent',
+                selected === 'Кошик'
+                  ? primaryColor
+                  : 'transparent',
             },
           ]}
         >
           <View style={styles.iconContainer}>
+
             <View
               style={[
                 styles.cartHandle,
                 {
                   borderColor:
-                    selected === 'Кошик' ? lightColor : brandColor,
+                    selected === 'Кошик'
+                      ? backgroundColor
+                      : primaryColor,
                 },
               ]}
             />
@@ -102,7 +152,9 @@ const CustomTabBar = ({ selected, setSelected }) => {
                 styles.cartBasket,
                 {
                   borderColor:
-                    selected === 'Кошик' ? lightColor : brandColor,
+                    selected === 'Кошик'
+                      ? backgroundColor
+                      : primaryColor,
                 },
               ]}
             />
@@ -113,20 +165,26 @@ const CustomTabBar = ({ selected, setSelected }) => {
                   styles.dot,
                   {
                     backgroundColor:
-                      selected === 'Кошик' ? lightColor : brandColor,
+                      selected === 'Кошик'
+                        ? backgroundColor
+                        : primaryColor,
                   },
                 ]}
               />
+
               <View
                 style={[
                   styles.dot,
                   {
                     backgroundColor:
-                      selected === 'Кошик' ? lightColor : brandColor,
+                      selected === 'Кошик'
+                        ? backgroundColor
+                        : primaryColor,
                   },
                 ]}
               />
             </View>
+
           </View>
 
           <Text
@@ -134,7 +192,9 @@ const CustomTabBar = ({ selected, setSelected }) => {
               styles.label,
               {
                 color:
-                  selected === 'Кошик' ? lightColor : brandColor,
+                  selected === 'Кошик'
+                    ? backgroundColor
+                    : textColor,
               },
             ]}
           >
@@ -143,7 +203,7 @@ const CustomTabBar = ({ selected, setSelected }) => {
         </View>
       </TouchableOpacity>
 
-      
+      {/* PROFILE */}
       <TouchableOpacity
         style={styles.tabItem}
         activeOpacity={0.8}
@@ -154,17 +214,22 @@ const CustomTabBar = ({ selected, setSelected }) => {
             styles.activeArea,
             {
               backgroundColor:
-                selected === 'Профіль' ? brandColor : 'transparent',
+                selected === 'Профіль'
+                  ? primaryColor
+                  : 'transparent',
             },
           ]}
         >
           <View style={styles.iconContainer}>
+
             <View
               style={[
                 styles.profileHead,
                 {
                   borderColor:
-                    selected === 'Профіль' ? lightColor : brandColor,
+                    selected === 'Профіль'
+                      ? backgroundColor
+                      : primaryColor,
                 },
               ]}
             />
@@ -174,10 +239,13 @@ const CustomTabBar = ({ selected, setSelected }) => {
                 styles.profileShoulders,
                 {
                   borderColor:
-                    selected === 'Профіль' ? lightColor : brandColor,
+                    selected === 'Профіль'
+                      ? backgroundColor
+                      : primaryColor,
                 },
               ]}
             />
+
           </View>
 
           <Text
@@ -185,7 +253,9 @@ const CustomTabBar = ({ selected, setSelected }) => {
               styles.label,
               {
                 color:
-                  selected === 'Профіль' ? lightColor : brandColor,
+                  selected === 'Профіль'
+                    ? backgroundColor
+                    : textColor,
               },
             ]}
           >
@@ -202,14 +272,27 @@ const styles = StyleSheet.create({
   navBar: {
     width: '100%',
     height: 120,
-    backgroundColor: '#fffbf5',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
     borderTopWidth: 2,
-    borderColor: '#4F2F00',
     paddingBottom: 10,
     paddingHorizontal: 10,
+    position: 'relative',
+  },
+
+  themeButton: {
+    position: 'absolute',
+    right: 12,
+    bottom: 12,
+    width: 20,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  themeIcon: {
+    fontSize: 18,
   },
 
   tabItem: {
@@ -239,7 +322,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 
-  /* HOME ICON */
+  
   homeRoof: {
     width: 28,
     height: 28,

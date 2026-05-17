@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   Text,
@@ -12,42 +12,117 @@ import {
   decreaseCount,
 } from './cartStore';
 
+import { ThemeContext } from '../components/themeContext';
+
 const CartCard = ({
   title,
   price,
   imageUrl,
   count,
 }) => {
-  return (
-    <View style={styles.card}>
+  const { theme } = useContext(ThemeContext);
 
-      <Image source={{ uri: imageUrl }} style={styles.image} />
+  return (
+    <View
+      style={[
+        styles.card,
+        {
+          backgroundColor: theme.colors.card,
+          borderColor: theme.colors.primary,
+        },
+      ]}
+    >
+
+      <Image
+        source={{ uri: imageUrl }}
+        style={styles.image}
+      />
 
       <View style={styles.info}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.price}>${price}</Text>
+        <Text
+          style={[
+            styles.title,
+            {
+              color: theme.colors.text,
+            },
+          ]}
+        >
+          {title}
+        </Text>
+
+        <Text
+          style={[
+            styles.price,
+            {
+              color: theme.colors.primary,
+            },
+          ]}
+        >
+          ${price}
+        </Text>
       </View>
 
       <View style={styles.counter}>
 
-        
+        {/* PLUS */}
         <TouchableOpacity
-          style={styles.btn}
+          style={[
+            styles.btn,
+            {
+              borderColor: theme.colors.primary,
+            },
+          ]}
           onPress={() => increaseCount(title)}
         >
-          <View style={styles.plusH} />
-          <View style={styles.plusV} />
+          <View
+            style={[
+              styles.plusH,
+              {
+                backgroundColor: theme.colors.primary,
+              },
+            ]}
+          />
+
+          <View
+            style={[
+              styles.plusV,
+              {
+                backgroundColor: theme.colors.primary,
+              },
+            ]}
+          />
         </TouchableOpacity>
 
-       
-        <Text style={styles.count}>{count}</Text>
+        {/* COUNT */}
+        <Text
+          style={[
+            styles.count,
+            {
+              color: theme.colors.text,
+            },
+          ]}
+        >
+          {count}
+        </Text>
 
-      
+        {/* MINUS */}
         <TouchableOpacity
-          style={styles.btn}
+          style={[
+            styles.btn,
+            {
+              borderColor: theme.colors.primary,
+            },
+          ]}
           onPress={() => decreaseCount(title)}
         >
-          <View style={styles.minus} />
+          <View
+            style={[
+              styles.minus,
+              {
+                backgroundColor: theme.colors.primary,
+              },
+            ]}
+          />
         </TouchableOpacity>
 
       </View>
@@ -62,9 +137,7 @@ const styles = StyleSheet.create({
     height: 110,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fffbf5',
     borderWidth: 2,
-    borderColor: '#4F2F00',
     borderRadius: 12,
     padding: 10,
     marginVertical: 6,
@@ -85,13 +158,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#4F2F00',
   },
 
   price: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#4F2F00',
     marginTop: 4,
   },
 
@@ -103,7 +174,6 @@ const styles = StyleSheet.create({
   count: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#4F2F00',
     marginVertical: 6,
   },
 
@@ -111,7 +181,6 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderWidth: 2,
-    borderColor: '#4F2F00',
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
@@ -121,20 +190,17 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 14,
     height: 2,
-    backgroundColor: '#4F2F00',
   },
 
   plusV: {
     position: 'absolute',
     width: 2,
     height: 14,
-    backgroundColor: '#4F2F00',
   },
 
   minus: {
     width: 14,
     height: 2,
-    backgroundColor: '#4F2F00',
   },
 });
 
